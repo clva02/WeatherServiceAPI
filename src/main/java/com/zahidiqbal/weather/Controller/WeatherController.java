@@ -1,6 +1,7 @@
 package com.zahidiqbal.weather.Controller;
 
 import com.zahidiqbal.weather.Service.WeatherService;
+import com.zahidiqbal.weather.model.WeatherByZip;
 import com.zahidiqbal.weather.model.WebServiceResponse;
 import com.zahidiqbal.weather.model.ZipCodes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,16 +31,15 @@ public class WeatherController {
 
 
     @RequestMapping( value="/weather", method = RequestMethod.POST, headers = "accept=Application/json")
-    public WebServiceResponse getWeather(@RequestBody Map<String, String> payload)
+    public List<WeatherByZip> getWeather(@RequestBody Map<String, String> payload)
             throws Exception {
         String cityName = payload.get("city");
         String state = payload.get("State");
      //validation logic here. call to validation object
 
      zipCodes =  weatherService.getZipCodes(cityName,state);
-        System.out.println(zipCodes.getZipCodes());
-     return null;
 
+     return weatherService.getWeatherByZip(zipCodes);
 
     }
 

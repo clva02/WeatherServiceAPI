@@ -6,7 +6,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletResponse;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public void handleNotFoundError(HttpServletResponse response, NoHandlerFoundException ex) {

@@ -19,7 +19,7 @@ public class WeatherApplication {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext =  SpringApplication.run(WeatherApplication.class, args);
 		WeatherController weatherController = applicationContext.getBean(WeatherController.class);
- 		
+
 	}
 
 
